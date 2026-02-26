@@ -220,7 +220,7 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
         <span class="logo-ft">f(t)</span><span class="logo-it"> it</span>
       </div>
       <p class="footer-cnpj" data-i18n="footer.cnpj">CNPJ: 55.191.137/0001-62</p>
-      <p class="footer-rights">&copy; <?php echo date('Y'); ?> FTIT. <span data-i18n="footer.rights">Todos os direitos reservados.</span></p>
+      <p class="footer-rights">&copy; <?php echo date('Y'); ?> FLAVIO TASSAN IT CONSULTING LTDA. <span data-i18n="footer.rights">Todos os direitos reservados.</span></p>
     </div>
   </footer>
 

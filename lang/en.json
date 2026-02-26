@@ -1,0 +1,49 @@
+{
+  "nav.services": "Services",
+  "nav.how": "How It Works",
+  "nav.differentials": "Why Us",
+  "nav.contact": "Contact",
+  "nav.lang_toggle": "PT",
+
+  "splash.subtitle": "Welcome, ready for the next step?",
+  "splash.cta": "Discover",
+
+  "hero.headline": "We transform your digital presence.",
+  "hero.subhead": "We are technology craftsmen \u2014 and we're here to help.",
+  "hero.description": "FTIT is a digital transformation consultancy for businesses of all sizes that want to grow online \u2014 from the first website to automation and complete digital strategies. Simple, direct, no fluff.",
+  "hero.cta": "Talk to us on WhatsApp",
+
+  "services.title": "Services",
+  "services.websites.title": "Professional Websites",
+  "services.websites.desc": "Your professional website starting at R$1,197, delivered in up to 2 weeks. Mobile responsive, WhatsApp button and basic SEO included.",
+  "services.consulting.title": "Digital Consulting",
+  "services.consulting.desc": "Analysis and strategy for your digital presence. We identify opportunities and create a plan for your business growth online.",
+  "services.support.title": "Support & Maintenance",
+  "services.support.desc": "Ongoing maintenance, updates and technical support to keep your site always online and running perfectly.",
+
+  "how.title": "How It Works",
+  "how.step1.title": "01 _ Talk",
+  "how.step1.desc": "Tell us your idea, your business, and your goals. No endless questionnaires \u2014 a direct conversation.",
+  "how.step2.title": "02 _ Build",
+  "how.step2.desc": "We develop your project with attention to every detail. You follow the progress in real time.",
+  "how.step3.title": "03 _ Deliver",
+  "how.step3.desc": "Your site goes live, ready to receive customers. No monthly fees, no surprises.",
+
+  "differentials.title": "Why Us",
+  "differentials.fast.title": "Fast Delivery",
+  "differentials.fast.desc": "Your site ready in up to 2 weeks. No delays, no excuses.",
+  "differentials.price.title": "Transparent Pricing",
+  "differentials.price.desc": "You know exactly how much you'll pay from the first contact. No hidden costs.",
+  "differentials.nomonthlyfee.title": "No Monthly Fee",
+  "differentials.nomonthlyfee.desc": "You pay once, it's yours. No recurring charges or loyalty contracts.",
+  "differentials.human.title": "Human Support",
+  "differentials.human.desc": "Direct contact with someone who understands the subject. No bots or waiting queues.",
+
+  "contact.title": "Contact",
+  "contact.subtitle": "Ready for the next step? Get in touch.",
+  "contact.whatsapp": "Chat on WhatsApp",
+  "contact.email": "contato@ftit.com.br",
+
+  "footer.rights": "All rights reserved.",
+  "footer.cnpj": "CNPJ: 00.000.000/0001-00"
+}

@@ -1,0 +1,49 @@
+{
+  "nav.services": "Servi\u00e7os",
+  "nav.how": "Como Funciona",
+  "nav.differentials": "Diferenciais",
+  "nav.contact": "Contato",
+  "nav.lang_toggle": "EN",
+
+  "splash.subtitle": "Bem vindo, pronto para o pr\u00f3ximo passo?",
+  "splash.cta": "Conhecer",
+
+  "hero.headline": "Transformamos sua presen\u00e7a digital.",
+  "hero.subhead": "Somos artes\u00e3os da tecnologia \u2014 e vamos te ajudar.",
+  "hero.description": "A FTIT \u00e9 uma consultoria de transforma\u00e7\u00e3o digital para empresas de todos os tamanhos que querem crescer online \u2014 do primeiro site at\u00e9 automa\u00e7\u00e3o e estrat\u00e9gias digitais completas. Simples, direto, sem enrola\u00e7\u00e3o.",
+  "hero.cta": "Fale conosco no WhatsApp",
+
+  "services.title": "Servi\u00e7os",
+  "services.websites.title": "Sites Profissionais",
+  "services.websites.desc": "Seu site profissional a partir de R$1.197, entregue em at\u00e9 2 semanas. Responsivo, com bot\u00e3o de WhatsApp e SEO b\u00e1sico incluso.",
+  "services.consulting.title": "Consultoria Digital",
+  "services.consulting.desc": "An\u00e1lise e estrat\u00e9gia para sua presen\u00e7a digital. Identificamos oportunidades e criamos um plano para o crescimento do seu neg\u00f3cio online.",
+  "services.support.title": "Suporte & Manuten\u00e7\u00e3o",
+  "services.support.desc": "Manuten\u00e7\u00e3o cont\u00ednua, atualiza\u00e7\u00f5es e suporte t\u00e9cnico para manter seu site sempre no ar e funcionando perfeitamente.",
+
+  "how.title": "Como Funciona",
+  "how.step1.title": "01 _ Conversa",
+  "how.step1.desc": "Voc\u00ea nos conta sua ideia, seu neg\u00f3cio e seus objetivos. Sem question\u00e1rios interminaveis \u2014 uma conversa direta.",
+  "how.step2.title": "02 _ Constru\u00e7\u00e3o",
+  "how.step2.desc": "Desenvolvemos seu projeto com aten\u00e7\u00e3o a cada detalhe. Voc\u00ea acompanha o progresso em tempo real.",
+  "how.step3.title": "03 _ Entrega",
+  "how.step3.desc": "Seu site vai ao ar, pronto para receber clientes. Sem taxas mensais, sem surpresas.",
+
+  "differentials.title": "Diferenciais",
+  "differentials.fast.title": "Entrega R\u00e1pida",
+  "differentials.fast.desc": "Seu site pronto em at\u00e9 2 semanas. Sem atrasos, sem desculpas.",
+  "differentials.price.title": "Pre\u00e7o Transparente",
+  "differentials.price.desc": "Voc\u00ea sabe exatamente quanto vai pagar desde o primeiro contato. Sem custos escondidos.",
+  "differentials.nomonthlyfee.title": "Sem Mensalidade",
+  "differentials.nomonthlyfee.desc": "Pagou, \u00e9 seu. Sem cobran\u00e7as recorrentes ou contratos de fidelidade.",
+  "differentials.human.title": "Suporte Humano",
+  "differentials.human.desc": "Atendimento direto com quem entende do assunto. Nada de bots ou filas de espera.",
+
+  "contact.title": "Contato",
+  "contact.subtitle": "Pronto para dar o pr\u00f3ximo passo? Fale com a gente.",
+  "contact.whatsapp": "Chamar no WhatsApp",
+  "contact.email": "contato@ftit.com.br",
+
+  "footer.rights": "Todos os direitos reservados.",
+  "footer.cnpj": "CNPJ: 00.000.000/0001-00"
+}

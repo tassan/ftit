@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# PHP
+*.log
+error_log
+
+# Dependencies (if added later)
+vendor/
+node_modules/
+
+# Build artifacts
+*.min.css
+*.min.js
+
+# Uploads / user content
+uploads/
+
+# Sensitive config
+config.php
+database.php
+
+# Claude
+.claude
+CLAUDE.md

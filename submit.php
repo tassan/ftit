@@ -1,4 +1,13 @@
 <?php
+if (file_exists(__DIR__ . '/.env')) {
+    foreach (file(__DIR__ . '/.env') as $line) {
+        $line = trim($line);
+        if ($line && strpos($line, '=') !== false && strpos($line, '#') !== 0) {
+            putenv($line);
+        }
+    }
+}
+
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -26,7 +35,10 @@ $payload = [
 $ch = curl_init('https://hook.us2.make.com/hpegxiczzk1fvmwzecbsc2rqtjdhyodf');
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
-curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'Authorization: Bearer ' . getenv('WEBHOOK_API_KEY'),
+]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_exec($ch);
 $ok = curl_getinfo($ch, CURLINFO_HTTP_CODE) < 400;

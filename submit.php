@@ -25,19 +25,20 @@ if (!is_array($data)) {
 }
 
 $payload = [
-    'name'    => $data['nome']     ?? '',
-    'company' => $data['negocio']  ?? '',
-    'area'    => $data['segmento'] ?? '',
-    'site'    => $data['temSite']  ?? '',
-    'pain'    => $data['dor']      ?? '',
+    'nome'    => $data['nome']     ?? '',
+    'negocio' => $data['negocio']  ?? '',
+    'segmento'    => $data['segmento'] ?? '',
+    'temSite'    => $data['temSite']  ?? '',
+    'dor'     => $data['dor']      ?? '',
 ];
 
-$ch = curl_init('https://hook.us2.make.com/hpegxiczzk1fvmwzecbsc2rqtjdhyodf');
+$ch = curl_init(getenv('WEBHOOK_URL'));
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+// add  x-make-apikey header with the value of WEBHOOK_API_KEY from .env
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
-    'Authorization: Bearer ' . getenv('WEBHOOK_API_KEY'),
+    'x-make-apikey: ' . getenv('WEBHOOK_API_KEY'),
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_exec($ch);

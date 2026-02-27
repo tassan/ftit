@@ -72,10 +72,13 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
   <section id="hero">
     <div class="container">
       <div class="section-content animate-on-scroll">
-        <h2 class="glitch-hover" data-i18n="hero.headline">Transformamos sua presença digital.</h2>
-        <p class="hero-subhead" data-i18n="hero.subhead">Somos artesãos da tecnologia — e vamos te ajudar.</p>
-        <p class="hero-description" data-i18n="hero.description">A FTIT é uma consultoria de transformação digital para empresas de todos os tamanhos que querem crescer online — do primeiro site até automação e estratégias digitais completas. Simples, direto, sem enrolação.</p>
-        <a href="<?php echo $whatsapp_url; ?>" target="_blank" rel="noopener" class="btn-primary" data-i18n="hero.cta">Fale conosco no WhatsApp</a>
+        <h2 class="glitch-hover" data-i18n="hero.headline">Seu site e seus processos trabalhando por você (não o contrário).</h2>
+        <p class="hero-subhead" data-i18n="hero.subhead">Implantamos site, automações e sistemas internos para reduzir retrabalho e aumentar conversão.</p>
+        <p class="hero-description" data-i18n="hero.description">Atendemos negócios em crescimento que precisam de site + automação + sistema, sem dependência de agência. +10 anos construindo software e automações para negócio. Entregas rápidas com base sólida.</p>
+        <div class="hero-ctas">
+          <a href="/diagnostico.php" class="btn-primary" data-i18n="hero.cta_diagnosis">Agendar diagnóstico (30 min)</a>
+          <a href="<?php echo $whatsapp_url; ?>" target="_blank" rel="noopener" class="btn-secondary" data-i18n="hero.cta_whatsapp">WhatsApp</a>
+        </div>
       </div>
     </div>
   </section>
@@ -83,7 +86,7 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
   <!-- Section 3 — Services -->
   <section id="services">
     <div class="container">
-      <h2 class="section-title glitch-hover animate-on-scroll" data-i18n="services.title">Serviços</h2>
+      <h2 class="section-title glitch-hover animate-on-scroll" data-i18n="services.title">Pacotes</h2>
       <div class="cards-grid">
         <div class="card animate-on-scroll">
           <div class="card-icon">
@@ -93,8 +96,8 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
               <line x1="12" y1="17" x2="12" y2="21"/>
             </svg>
           </div>
-          <h3 data-i18n="services.websites.title">Sites Profissionais</h3>
-          <p data-i18n="services.websites.desc">Seu site profissional, entregue em até 2 semanas. Responsivo, com botão de WhatsApp e SEO básico incluso.</p>
+          <h3 data-i18n="services.websites.title">Site Estratégico</h3>
+          <p data-i18n="services.websites.desc">Landing page ou site institucional orientado a conversão. SEO base, analytics e copy focada em resultado. Entregue em até 2 semanas.</p>
         </div>
         <div class="card animate-on-scroll">
           <div class="card-icon">
@@ -104,8 +107,8 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             </svg>
           </div>
-          <h3 data-i18n="services.consulting.title">Consultoria Digital</h3>
-          <p data-i18n="services.consulting.desc">Análise e estratégia para sua presença digital. Identificamos oportunidades e criamos um plano para o crescimento do seu negócio online.</p>
+          <h3 data-i18n="services.consulting.title">Diagnóstico + Roadmap</h3>
+          <p data-i18n="services.consulting.desc">Mapeamento de processos, oportunidades e plano de 90 dias com priorização e estimativa. Clareza antes de qualquer investimento.</p>
         </div>
         <div class="card animate-on-scroll">
           <div class="card-icon">
@@ -113,8 +116,8 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
             </svg>
           </div>
-          <h3 data-i18n="services.support.title">Suporte & Manutenção</h3>
-          <p data-i18n="services.support.desc">Manutenção contínua, atualizações e suporte técnico para manter seu site sempre no ar e funcionando perfeitamente.</p>
+          <h3 data-i18n="services.support.title">Evolução e Operação</h3>
+          <p data-i18n="services.support.desc">Dashboards, integrações, automação e sistemas internos — com base sólida e evolução contínua. Processo claro, escopo bem definido, entrega por fase.</p>
         </div>
       </div>
     </div>
@@ -206,7 +209,7 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
         <p class="contact-subtitle" data-i18n="contact.subtitle">Pronto para dar o próximo passo? Fale com a gente.</p>
         <div class="contact-buttons">
           <a href="<?php echo $whatsapp_url; ?>" target="_blank" rel="noopener" class="btn-primary btn-whatsapp" data-i18n="contact.whatsapp">Chamar no WhatsApp</a>
-          <a href="mailto:contato@ftit.com.br" class="btn-secondary" data-i18n="contact.email">contato@ftit.com.br</a>
+          <a href="/cdn-cgi/l/email-protection#46252928322732290620322f326825292b682434" class="btn-secondary" data-i18n="contact.email"><span class="__cf_email__" data-cfemail="12717d7c6673667d5274667b663c717d7f3c7060">[email&#160;protected]</span></a>
         </div>
         <p class="terminal-line">> <span class="terminal-cursor">_</span></p>
       </div>
@@ -220,17 +223,13 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
         <span class="logo-ft">f(t)</span><span class="logo-it"> it</span>
       </div>
       <p class="footer-cnpj" data-i18n="footer.cnpj">CNPJ: 55.191.137/0001-62</p>
-      <p class="footer-rights">&copy; <?php echo date('Y'); ?> FLAVIO TASSAN IT CONSULTING LTDA. <span data-i18n="footer.rights">Todos os direitos reservados.</span></p>
+      <p class="footer-rights">&copy; <?php echo date('Y'); ?> FTIT. <span data-i18n="footer.rights">Todos os direitos reservados.</span></p>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 
   <!-- Floating WhatsApp Button -->
   <a href="<?php echo $whatsapp_url; ?>" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  </a>
-
-  <script src="script.js"></script>
-</body>
-</html>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.55

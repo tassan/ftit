@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Do not rewrite actual files or directories at the root
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Prevent direct access to the public directory path itself
+    RewriteCond %{REQUEST_URI} !^/public/
+
+    # Route all requests to the public/ directory
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
+</IfModule>

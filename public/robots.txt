@@ -1,7 +1,2 @@
 User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /config/
-Disallow: /lang/
-
-Sitemap: https://ftit.com.br/sitemap.xml
+Disallow:

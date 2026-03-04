@@ -431,3 +431,4 @@ document.addEventListener('keydown', e => {
 // ─── Init ─────────────────────────────────────────────────────────────────────
 updateProgress();
 document.getElementById('btn1').disabled = true;
+

@@ -1,49 +1,21 @@
-Options -Indexes
-ServerSignature Off
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
 
-RewriteEngine On
+    RewriteEngine On
 
-# Route /api/* requests into the Laravel backend front controller
-# Adjust the relative path if you move the Laravel app.
-RewriteCond %{REQUEST_URI} ^/api/ [NC]
-RewriteRule ^api/(.*)$ ../laravel-backend/public/index.php [QSA,L]
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-# URLs limpas — remove extensão .php (legacy pages)
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
 
-# Redirect www → non-www (produção)
-RewriteCond %{ENV:APP_ENV} =production
-RewriteCond %{HTTP_HOST} ^www\.ftit\.com\.br [NC]
-RewriteRule ^ https://ftit.com.br%{REQUEST_URI} [R=301,L]
-
-# Force HTTPS (produção apenas)
-RewriteCond %{ENV:APP_ENV} =production
-RewriteCond %{HTTP_HOST} ^ftit\.com\.br$ [NC]
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-# Cache de assets estáticos
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType text/html "access plus 1 hour"
-</IfModule>
-
-# Compressão gzip
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
-</IfModule>
-
-# Headers de segurança
-<IfModule mod_headers.c>
-  Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set X-Content-Type-Options "nosniff"
-  Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
 </IfModule>

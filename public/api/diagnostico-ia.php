@@ -94,7 +94,7 @@ function callOpenAI(string $prompt): array {
     }
 
     $payload = json_encode([
-        'model'       => getenv('OPENAI_MODEL') ?: 'gpt-4.1-mini',
+        'model'       => getenv('OPENAI_MODEL') ?: 'gpt-5.1',
         'max_tokens'  => 1024,
         'temperature' => 0.2,
         'messages'    => [

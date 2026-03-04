@@ -1,12 +1,5 @@
 <?php
-if (file_exists(__DIR__ . '/.env')) {
-    foreach (file(__DIR__ . '/.env') as $line) {
-        $line = trim($line);
-        if ($line && strpos($line, '=') !== false && strpos($line, '#') !== 0) {
-            putenv($line);
-        }
-    }
-}
+$config = require __DIR__ . '/config/env.php';
 
 header('Content-Type: application/json');
 
@@ -25,20 +18,21 @@ if (!is_array($data)) {
 }
 
 $payload = [
-    'nome'    => $data['nome']     ?? '',
-    'negocio' => $data['negocio']  ?? '',
-    'segmento'    => $data['segmento'] ?? '',
-    'temSite'    => $data['temSite']  ?? '',
-    'dor'     => $data['dor']      ?? '',
+    'nome'     => $data['nome']     ?? '',
+    'negocio'  => $data['negocio']  ?? '',
+    'email'    => $data['email']    ?? '',
+    'telefone' => $data['telefone'] ?? '',
+    'segmento' => $data['segmento'] ?? '',
+    'temSite'  => $data['temSite']  ?? '',
+    'dor'      => $data['dor']      ?? '',
 ];
 
-$ch = curl_init(getenv('WEBHOOK_URL'));
+$ch = curl_init($config['webhook_url']);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
-// add  x-make-apikey header with the value of WEBHOOK_API_KEY from .env
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
-    'x-make-apikey: ' . getenv('WEBHOOK_API_KEY'),
+    'x-make-apikey: ' . $config['webhook_key'],
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_exec($ch);

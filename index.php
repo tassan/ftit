@@ -8,21 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="ft_logo.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <?php
-// Load .env file for local development
-if (file_exists(__DIR__ . '/.env')) {
-    foreach (file(__DIR__ . '/.env') as $line) {
-        $line = trim($line);
-        if ($line && strpos($line, '=') !== false && strpos($line, '#') !== 0) {
-            putenv($line);
-        }
-    }
-}
-
-$whatsapp = getenv('WHATSAPP_NUMBER') ?: '5500000000000';
-$whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
+$config = require __DIR__ . '/config/env.php';
+$whatsapp_url = 'https://wa.me/' . htmlspecialchars($config['whatsapp'], ENT_QUOTES, 'UTF-8');
+$email_to     = $config['email'];
 ?>
 <body>
 
@@ -261,7 +253,7 @@ $whatsapp_url = 'https://wa.me/' . htmlspecialchars($whatsapp);
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
 
   <!-- Floating WhatsApp Button -->
   <a href="<?php echo $whatsapp_url; ?>" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp">

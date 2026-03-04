@@ -3,7 +3,12 @@ ServerSignature Off
 
 RewriteEngine On
 
-# URLs limpas — remove extensão .php
+# Route /api/* requests into the Laravel backend front controller
+# Adjust the relative path if you move the Laravel app.
+RewriteCond %{REQUEST_URI} ^/api/ [NC]
+RewriteRule ^api/(.*)$ ../laravel-backend/public/index.php [QSA,L]
+
+# URLs limpas — remove extensão .php (legacy pages)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]

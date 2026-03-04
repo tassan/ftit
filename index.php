@@ -1,5 +1,6 @@
 <?php
-// Em produção: configure o web root para apontar diretamente para public/
-// Em desenvolvimento local (XAMPP): este arquivo redireciona para public/
-header('Location: public/', true, 302);
+// Para produção, configure o web root do servidor para apontar diretamente
+// para "laravel-backend/public". Em desenvolvimento local (XAMPP), este
+// arquivo redireciona para o front controller do Laravel.
+header('Location: laravel-backend/public/', true, 302);
 exit;

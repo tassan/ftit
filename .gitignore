@@ -32,6 +32,20 @@ uploads/
 # Sensitive config
 database.php
 
+# Laravel (ignored when working with PHP-only / reverted state)
+.env.production
+.env.backup
+.phpunit.result.cache
+.phpunit.cache
+bootstrap/
+database/
+storage/
+app/
+config/
+resources/
+routes/
+artisan
+
 # Claude
 .claude
 CLAUDE.md

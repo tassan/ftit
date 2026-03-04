@@ -15,15 +15,21 @@ if (!$input) {
     exit(json_encode(['error' => 'Invalid input']));
 }
 
-$campos = ['nome', 'email', 'segmento', 'cidade', 'faturamento', 'funcionarios',
-           'tem_site', 'google_meu_negocio', 'como_acham', 'problema', 'objetivo'];
+// Resolve segmento: se "outro", usa o textbox
+$segmento = ($input['segmento'] ?? '') === 'outro'
+    ? htmlspecialchars(trim($input['segmento_outro'] ?? 'Outro'), ENT_QUOTES, 'UTF-8')
+    : htmlspecialchars(trim($input['segmento'] ?? ''), ENT_QUOTES, 'UTF-8');
 
-$dados = [];
+$campos = ['nome', 'email', 'telefone', 'cidade', 'faturamento', 'funcionarios',
+           'tem_site', 'google_meu_negocio', 'instagram', 'como_acham',
+           'agendamento', 'followup', 'horas_admin', 'problema', 'objetivo'];
+
+$dados = ['segmento' => $segmento];
 foreach ($campos as $campo) {
     $dados[$campo] = htmlspecialchars(trim($input[$campo] ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-$prompt = buildPrompt($dados);
+$prompt    = buildPrompt($dados);
 $resultado = callAnthropic($prompt);
 
 if ($resultado['success']) {
@@ -36,7 +42,7 @@ if ($resultado['success']) {
 
 function buildPrompt(array $d): string {
     return <<<EOT
-Você é um consultor sênior da FTIT, especializado em transformação digital para pequenas empresas no Brasil.
+Você é um consultor sênior da FTIT, especializado em transformação digital para pequenos negócios no Brasil.
 
 Analise os dados deste lead e gere um diagnóstico digital personalizado. Seu objetivo é demonstrar expertise real e criar desejo genuíno pelo serviço — sem pressão, sem exagero.
 
@@ -48,21 +54,26 @@ DADOS DO LEAD:
 - Número de funcionários: {$d['funcionarios']}
 - Tem site? {$d['tem_site']}
 - Está no Google Meu Negócio? {$d['google_meu_negocio']}
-- Como clientes encontram o negócio hoje: {$d['como_acham']}
+- Tem Instagram ativo? {$d['instagram']}
+- Como clientes encontram o negócio: {$d['como_acham']}
+- Como agenda atendimentos: {$d['agendamento']}
+- Faz acompanhamento pós-atendimento? {$d['followup']}
+- Horas semanais em tarefas administrativas: {$d['horas_admin']}
 - Maior problema digital hoje: {$d['problema']}
 - Objetivo nos próximos 3 meses: {$d['objetivo']}
 
 REGRAS:
-1. Comece validando o contexto — reconheça o que o negócio tem ou faz bem antes de apontar gaps
-2. Identifique 2 a 3 gaps concretos com impacto direto em faturamento ou captação de clientes
-3. Use dados reais quando possível (ex: "76% dos consumidores pesquisam online antes de contratar um serviço local")
-4. Aponte os próximos passos naturalmente em direção aos serviços da FTIT (site estratégico, automação de processos)
-5. Finalize com um CTA personalizado e urgente para agendar uma call de 30 minutos
-6. Tom: direto, especialista, humano. Fale como consultor experiente, não como chatbot
+1. Comece validando o contexto — reconheça o que o negócio tem ou faz bem
+2. Identifique 2 a 3 gaps concretos com impacto direto em faturamento ou captação
+3. Use dados reais do mercado brasileiro quando possível
+4. Se o negócio agenda manualmente ou gasta muitas horas em tarefas repetitivas, destaque o potencial de automação
+5. Aponte próximos passos em direção natural aos serviços da FTIT: site estratégico e/ou automação de processos
+6. Finalize com CTA personalizado e urgente para agendar uma call de 30 minutos com a FTIT
+7. Tom: direto, especialista, humano — consultor experiente, não chatbot
 
 Responda APENAS com JSON válido, sem markdown, sem texto antes ou depois:
 {
-  "titulo": "string",
+  "titulo": "string — ex: Diagnóstico Digital — [Nome do negócio]",
   "situacao_atual": "string — 2 a 3 frases contextualizando o negócio",
   "gaps": [
     { "problema": "string", "impacto": "string — com número ou dado quando possível" }

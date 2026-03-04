@@ -2,7 +2,7 @@
 $config = require __DIR__ . '/config/config.php';
 $page = [
     'title'       => 'Diagnóstico Digital Gratuito',
-    'description' => 'Descubra em 2 minutos os principais gaps digitais do seu negócio e receba um parecer personalizado.',
+    'description' => 'Descubra em 2 minutos os principais gaps digitais do seu negócio e receba um parecer personalizado com IA.',
     'url'         => BASE_URL . '/diagnostico',
 ];
 ?>
@@ -22,8 +22,8 @@ $page = [
             <span class="back-arrow">←</span>
             <span class="ft">f(t)</span><span class="it"> it</span>
         </a>
-        <h1 data-i18n-html="diag.title">Diagnóstico <span class="highlight">Express</span></h1>
-        <p data-i18n-html="diag.subtitle">4 perguntas rápidas. Depois, <strong>30 minutos de conversa direta</strong> sobre seu negócio.</p>
+        <h1>Diagnóstico <span class="highlight">Digital</span></h1>
+        <p>6 blocos rápidos. Depois, um <strong>parecer personalizado com IA</strong> sobre o seu negócio.</p>
     </div>
 
     <!-- Progress -->
@@ -31,180 +31,287 @@ $page = [
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
         </div>
-        <div class="progress-label" id="progressLabel">Etapa 1 de 4</div>
+        <div class="progress-label" id="progressLabel">Etapa 1 de 6</div>
     </div>
 
-    <!-- Step 1: Name & Business -->
+    <!-- Gancho feedback (contextual message shown between blocks) -->
+    <div id="gancho-feedback" class="gancho" aria-live="polite" style="display:none">
+        <span class="gancho-emoji"></span>
+        <p class="gancho-texto"></p>
+        <small class="gancho-fonte"></small>
+    </div>
+
+    <!-- Step 1 — Bloco 1: Identificação -->
     <div class="step active" id="step1">
         <div class="step-number">01_</div>
-        <div class="step-question" data-i18n="diag.step1.question">Quem é você e qual seu negócio?</div>
-        <div class="step-hint" data-i18n="diag.step1.hint">Só o básico pra gente não começar do zero na conversa.</div>
+        <div class="step-question">Quem é você e qual seu negócio?</div>
+        <div class="step-hint">Só o básico pra gente não começar do zero no parecer.</div>
 
         <div class="input-row">
             <div class="input-group">
-                <label class="input-label" for="nome" data-i18n="diag.step1.name_label">Seu nome</label>
-                <input type="text" id="nome" class="input-field" placeholder="Ex: Ana Silva" data-i18n-placeholder="diag.step1.name_placeholder">
+                <label class="input-label" for="nome">Seu nome</label>
+                <input type="text" id="nome" class="input-field" placeholder="Ex: Ana Silva" required>
             </div>
             <div class="input-group">
-                <label class="input-label" for="negocio" data-i18n="diag.step1.biz_label">Nome do negócio</label>
-                <input type="text" id="negocio" class="input-field" placeholder="Ex: Clínica Renova" data-i18n-placeholder="diag.step1.biz_placeholder">
+                <label class="input-label" for="negocio">Nome do negócio</label>
+                <input type="text" id="negocio" class="input-field" placeholder="Ex: Clínica Renova" required>
             </div>
         </div>
 
         <div class="input-row">
             <div class="input-group">
-                <label class="input-label" for="telefone" data-i18n="diag.step1.phone_label">WhatsApp / Telefone</label>
-                <input type="tel" id="telefone" class="input-field" placeholder="Ex: (11) 99999-9999" data-i18n-placeholder="diag.step1.phone_placeholder">
+                <label class="input-label" for="email">E-mail</label>
+                <input type="email" id="email" class="input-field" placeholder="Ex: ana@clinica.com.br" required>
             </div>
             <div class="input-group">
-                <label class="input-label" for="email" data-i18n="diag.step1.email_label">E-mail (opcional)</label>
-                <input type="email" id="email" class="input-field" placeholder="Ex: ana@clinica.com.br" data-i18n-placeholder="diag.step1.email_placeholder">
+                <label class="input-label" for="telefone">WhatsApp</label>
+                <input type="tel" id="telefone" class="input-field" placeholder="Ex: (11) 99999-9999" required>
             </div>
         </div>
-
-        <div class="btn-row">
-            <button class="btn btn-primary" onclick="nextStep(1)" id="btn1" data-i18n="diag.next">Próximo →</button>
-        </div>
-    </div>
-
-    <!-- Step 2: Segment -->
-    <div class="step" id="step2">
-        <div class="step-number">02_</div>
-        <div class="step-question" data-i18n="diag.step2.question">Qual o segmento do seu negócio?</div>
-        <div class="step-hint" data-i18n="diag.step2.hint">Isso me ajuda a trazer referências relevantes na conversa.</div>
-
-        <div class="options-grid">
-            <div class="option-card" onclick="selectOption(this, 'segmento')">
-                <div class="option-title" data-i18n="diag.seg.health.title">Saúde</div>
-                <div class="option-desc" data-i18n="diag.seg.health.desc">Clínica, consultório, laboratório</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'segmento')">
-                <div class="option-title" data-i18n="diag.seg.beauty.title">Beleza & Estética</div>
-                <div class="option-desc" data-i18n="diag.seg.beauty.desc">Salão, studio, spa, barbearia</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'segmento')">
-                <div class="option-title" data-i18n="diag.seg.retail.title">Varejo</div>
-                <div class="option-desc" data-i18n="diag.seg.retail.desc">Loja física, e-commerce, atacado</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'segmento')">
-                <div class="option-title" data-i18n="diag.seg.services.title">Serviços</div>
-                <div class="option-desc" data-i18n="diag.seg.services.desc">Advocacia, contabilidade, consultoria</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'segmento')">
-                <div class="option-title" data-i18n="diag.seg.food.title">Alimentação</div>
-                <div class="option-desc" data-i18n="diag.seg.food.desc">Restaurante, delivery, confeitaria</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'segmento')">
-                <div class="option-title" data-i18n="diag.seg.other.title">Outro</div>
-                <div class="option-desc" data-i18n="diag.seg.other.desc">Me conta na conversa</div>
-            </div>
-        </div>
-
-        <div class="btn-row">
-            <button class="btn btn-secondary" onclick="prevStep(2)" data-i18n="diag.back">← Voltar</button>
-            <button class="btn btn-primary" onclick="nextStep(2)" id="btn2" disabled data-i18n="diag.next">Próximo →</button>
-        </div>
-    </div>
-
-    <!-- Step 3: Has website? -->
-    <div class="step" id="step3">
-        <div class="step-number">03_</div>
-        <div class="step-question" data-i18n="diag.step3.question">Você já tem site?</div>
-        <div class="step-hint" data-i18n="diag.step3.hint">Sem julgamento. A maioria dos negócios que atendo não tem — e tudo bem.</div>
-
-        <div class="options-grid">
-            <div class="option-card" onclick="selectOption(this, 'temSite')">
-                <div class="option-title" data-i18n="diag.site.none.title">Não tenho</div>
-                <div class="option-desc" data-i18n="diag.site.none.desc">Nunca tive</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'temSite')">
-                <div class="option-title" data-i18n="diag.site.bad.title">Tenho, mas...</div>
-                <div class="option-desc" data-i18n="diag.site.bad.desc">Tá desatualizado ou feio</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'temSite')">
-                <div class="option-title" data-i18n="diag.site.good.title">Tenho e funciona</div>
-                <div class="option-desc" data-i18n="diag.site.good.desc">Mas quero melhorar</div>
-            </div>
-            <div class="option-card" onclick="selectOption(this, 'temSite')">
-                <div class="option-title" data-i18n="diag.site.ig.title">Só Instagram</div>
-                <div class="option-desc" data-i18n="diag.site.ig.desc">É minha presença digital</div>
-            </div>
-        </div>
-
-        <div class="btn-row">
-            <button class="btn btn-secondary" onclick="prevStep(3)" data-i18n="diag.back">← Voltar</button>
-            <button class="btn btn-primary" onclick="nextStep(3)" id="btn3" disabled data-i18n="diag.next">Próximo →</button>
-        </div>
-    </div>
-
-    <!-- Step 4: Pain point -->
-    <div class="step" id="step4">
-        <div class="step-number">04_</div>
-        <div class="step-question" data-i18n="diag.step4.question">O que mais te incomoda hoje?</div>
-        <div class="step-hint" data-i18n="diag.step4.hint">Sobre sua presença digital, atendimento online, ou qualquer processo do negócio. 1-2 frases tá ótimo.</div>
 
         <div class="input-group">
-            <textarea id="dor" class="input-field" placeholder="Ex: Perco clientes porque não apareço no Google..." data-i18n-placeholder="diag.step4.placeholder"></textarea>
+            <label class="input-label" for="cidade">Cidade</label>
+            <input type="text" id="cidade" class="input-field" placeholder="Ex: São Paulo – SP" required>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-primary" onclick="nextStep(1)" id="btn1" disabled>Próximo →</button>
+        </div>
+    </div>
+
+    <!-- Step 2 — Bloco 2: Segmento -->
+    <div class="step" id="step2">
+        <div class="step-number">02_</div>
+        <div class="step-question">Qual o segmento do seu negócio?</div>
+        <div class="step-hint">Isso me ajuda a trazer referências de mercado relevantes no parecer.</div>
+
+        <div class="input-group">
+            <label class="input-label" for="segmento">Segmento</label>
+            <select id="segmento" class="input-field" required>
+                <option value="" disabled selected>Selecione seu segmento</option>
+
+                <optgroup label="Saúde & Bem-estar">
+                    <option value="Clínica estética / Beleza">Clínica estética / Beleza</option>
+                    <option value="Dentista / Odontologia">Dentista / Odontologia</option>
+                    <option value="Psicólogo / Terapeuta">Psicólogo / Terapeuta</option>
+                    <option value="Academia / Personal trainer">Academia / Personal trainer</option>
+                    <option value="Nutricionista">Nutricionista</option>
+                    <option value="Fisioterapeuta">Fisioterapeuta</option>
+                </optgroup>
+
+                <optgroup label="Pets">
+                    <option value="Veterinário / Clínica veterinária">Veterinário / Clínica veterinária</option>
+                    <option value="Pet shop">Pet shop</option>
+                    <option value="Banho & Tosa">Banho & Tosa</option>
+                    <option value="Hotel / Day care para pets">Hotel / Day care para pets</option>
+                    <option value="Adestrador">Adestrador</option>
+                </optgroup>
+
+                <optgroup label="Varejo">
+                    <option value="Loja física / Moda">Loja física / Moda</option>
+                    <option value="Loja de eletrônicos / Informática">Loja de eletrônicos / Informática</option>
+                    <option value="Farmácia / Perfumaria">Farmácia / Perfumaria</option>
+                    <option value="Mercado / Mercearia">Mercado / Mercearia</option>
+                    <option value="E-commerce / Loja online">E-commerce / Loja online</option>
+                    <option value="Restaurante / Cafeteria / Lanchonete">Restaurante / Cafeteria / Lanchonete</option>
+                    <option value="Oficina / Serviço automotivo">Oficina / Serviço automotivo</option>
+                </optgroup>
+
+                <optgroup label="Serviços Especializados">
+                    <option value="Advogado / Jurídico">Advogado / Jurídico</option>
+                    <option value="Contador / Financeiro">Contador / Financeiro</option>
+                    <option value="Arquiteto / Designer de interiores">Arquiteto / Designer de interiores</option>
+                    <option value="Consultor / Coach">Consultor / Coach</option>
+                    <option value="Escola / Curso / Treinamento">Escola / Curso / Treinamento</option>
+                    <option value="Agência / Marketing">Agência / Marketing</option>
+                    <option value="TI / Tecnologia">TI / Tecnologia</option>
+                </optgroup>
+
+                <option value="outro">Outro</option>
+            </select>
+        </div>
+
+        <div class="input-group" id="segmento-outro-group" style="display:none">
+            <label class="input-label" for="segmento_outro">Qual é o seu negócio?</label>
+            <input type="text" id="segmento_outro" class="input-field" placeholder="Descreva brevemente">
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-secondary" onclick="prevStep(2)">← Voltar</button>
+            <button class="btn btn-primary" onclick="nextStep(2)" id="btn2" disabled>Próximo →</button>
+        </div>
+    </div>
+
+    <!-- Step 3 — Bloco 3: Porte -->
+    <div class="step" id="step3">
+        <div class="step-number">03_</div>
+        <div class="step-question">Qual o porte do seu negócio?</div>
+        <div class="step-hint">Sem compromisso — só pra calibrar o parecer.</div>
+
+        <div class="input-group">
+            <label class="input-label">Faturamento mensal estimado</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="faturamento" value="Até R$10k"><span>Até R$ 10k</span></label>
+                <label class="radio-option"><input type="radio" name="faturamento" value="R$10k–30k"><span>R$ 10k – 30k</span></label>
+                <label class="radio-option"><input type="radio" name="faturamento" value="R$30k–80k"><span>R$ 30k – 80k</span></label>
+                <label class="radio-option"><input type="radio" name="faturamento" value="Acima de R$80k"><span>Acima de R$ 80k</span></label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Número de funcionários</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="funcionarios" value="Só eu"><span>Só eu</span></label>
+                <label class="radio-option"><input type="radio" name="funcionarios" value="2–5 pessoas"><span>2–5 pessoas</span></label>
+                <label class="radio-option"><input type="radio" name="funcionarios" value="6–15 pessoas"><span>6–15 pessoas</span></label>
+                <label class="radio-option"><input type="radio" name="funcionarios" value="Mais de 15"><span>Mais de 15</span></label>
+            </div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-secondary" onclick="prevStep(3)">← Voltar</button>
+            <button class="btn btn-primary" onclick="nextStep(3)" id="btn3" disabled>Próximo →</button>
+        </div>
+    </div>
+
+    <!-- Step 4 — Bloco 4: Presença digital -->
+    <div class="step" id="step4">
+        <div class="step-number">04_</div>
+        <div class="step-question">Como está sua presença digital?</div>
+        <div class="step-hint">4 perguntas rápidas — clique na opção que melhor descreve sua situação.</div>
+
+        <div class="input-group">
+            <label class="input-label">Tem site?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="tem_site" value="Sim"><span>Sim</span></label>
+                <label class="radio-option"><input type="radio" name="tem_site" value="Não"><span>Não</span></label>
+                <label class="radio-option"><input type="radio" name="tem_site" value="Tenho, mas não funciona direito"><span>Tenho, mas não funciona direito</span></label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Está no Google Meu Negócio?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="google_meu_negocio" value="Sim"><span>Sim</span></label>
+                <label class="radio-option"><input type="radio" name="google_meu_negocio" value="Não"><span>Não</span></label>
+                <label class="radio-option"><input type="radio" name="google_meu_negocio" value="Não sei o que é isso"><span>Não sei o que é isso</span></label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Tem Instagram ativo?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="instagram" value="Sim, posto regularmente"><span>Sim, posto regularmente</span></label>
+                <label class="radio-option"><input type="radio" name="instagram" value="Tenho, mas não posto"><span>Tenho, mas não posto</span></label>
+                <label class="radio-option"><input type="radio" name="instagram" value="Não tenho"><span>Não tenho</span></label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Como a maioria dos clientes te encontra?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="como_acham" value="Indicação de amigos"><span>Indicação de amigos</span></label>
+                <label class="radio-option"><input type="radio" name="como_acham" value="Google"><span>Google</span></label>
+                <label class="radio-option"><input type="radio" name="como_acham" value="Instagram"><span>Instagram</span></label>
+                <label class="radio-option"><input type="radio" name="como_acham" value="Passando na frente"><span>Passando na frente</span></label>
+                <label class="radio-option"><input type="radio" name="como_acham" value="Outro"><span>Outro</span></label>
+            </div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-secondary" onclick="prevStep(4)">← Voltar</button>
+            <button class="btn btn-primary" onclick="nextStep(4)" id="btn4" disabled>Próximo →</button>
+        </div>
+    </div>
+
+    <!-- Step 5 — Bloco 5: Operação -->
+    <div class="step" id="step5">
+        <div class="step-number">05_</div>
+        <div class="step-question">Como funciona sua operação?</div>
+        <div class="step-hint">Isso ajuda a identificar onde a automação pode poupar seu tempo.</div>
+
+        <div class="input-group">
+            <label class="input-label">Como você agenda atendimentos hoje?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="agendamento" value="WhatsApp manual"><span>WhatsApp manual</span></label>
+                <label class="radio-option"><input type="radio" name="agendamento" value="Telefone"><span>Telefone</span></label>
+                <label class="radio-option"><input type="radio" name="agendamento" value="Sistema"><span>Sistema próprio / app</span></label>
+                <label class="radio-option"><input type="radio" name="agendamento" value="Planilha"><span>Planilha</span></label>
+                <label class="radio-option"><input type="radio" name="agendamento" value="Não agendo (presencial)"><span>Não agendo (presencial)</span></label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Faz acompanhamento de clientes após o atendimento?</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="followup" value="Sim, sempre"><span>Sim, sempre</span></label>
+                <label class="radio-option"><input type="radio" name="followup" value="Às vezes"><span>Às vezes</span></label>
+                <label class="radio-option"><input type="radio" name="followup" value="Não faço"><span>Não faço</span></label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Horas por semana em tarefas administrativas repetitivas</label>
+            <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="horas_admin" value="Menos de 2h"><span>Menos de 2h</span></label>
+                <label class="radio-option"><input type="radio" name="horas_admin" value="2–5h"><span>2–5h</span></label>
+                <label class="radio-option"><input type="radio" name="horas_admin" value="5–10h"><span>5–10h</span></label>
+                <label class="radio-option"><input type="radio" name="horas_admin" value="Mais de 10h"><span>Mais de 10h</span></label>
+            </div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-secondary" onclick="prevStep(5)">← Voltar</button>
+            <button class="btn btn-primary" onclick="nextStep(5)" id="btn5" disabled>Próximo →</button>
+        </div>
+    </div>
+
+    <!-- Step 6 — Bloco 6: Dor e objetivo -->
+    <div class="step" id="step6">
+        <div class="step-number">06_</div>
+        <div class="step-question">Qual é a dor real do seu negócio?</div>
+        <div class="step-hint">2 perguntas finais. Quanto mais sincero, mais útil o parecer.</div>
+
+        <div class="input-group">
+            <label class="input-label" for="problema">Qual é o maior problema com sua presença digital hoje?</label>
+            <textarea id="problema" class="input-field" placeholder="Ex: Perco clientes porque não apareço no Google..." rows="3"></textarea>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label" for="objetivo">O que você quer resolver nos próximos 3 meses?</label>
+            <textarea id="objetivo" class="input-field" placeholder="Ex: Quero ter um site que converta e automatizar meu agendamento..." rows="3"></textarea>
         </div>
 
         <div class="consent-wrapper">
             <label class="consent-label">
                 <input type="checkbox" id="lgpd-consent">
-                <span data-i18n-html="diag.consent">Li e concordo com a <a href="/privacidade.php" target="_blank">Política de Privacidade</a></span>
+                <span>Li e concordo com a <a href="/privacidade" target="_blank">Política de Privacidade</a></span>
             </label>
         </div>
 
         <div class="btn-row">
-            <button class="btn btn-secondary" onclick="prevStep(4)" data-i18n="diag.back">← Voltar</button>
-            <button class="btn btn-primary" onclick="submitForm()" id="btn4" disabled data-i18n="diag.submit">Agendar diagnóstico →</button>
+            <button class="btn btn-secondary" onclick="prevStep(6)">← Voltar</button>
+            <button class="btn btn-primary" onclick="submitForm()" id="btn6" disabled>Gerar parecer →</button>
         </div>
     </div>
 
-    <!-- Success -->
-    <div class="step" id="stepSuccess">
-        <div class="success-screen">
-            <div class="success-icon">✓</div>
-            <h2 id="successTitle">Pronto!</h2>
-            <p data-i18n="diag.success.msg1">Recebi suas respostas. Vou te chamar no WhatsApp pra confirmar o melhor horário pro diagnóstico.</p>
-            <p style="font-size: 0.875rem;" id="successMsg2"></p>
-
-            <div class="summary-card">
-                <h3 data-i18n="diag.success.summary">// Resumo</h3>
-                <div class="summary-item">
-                    <span class="label" data-i18n="diag.sum.name">Nome</span>
-                    <span class="value" id="sumNome">—</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label" data-i18n="diag.sum.biz">Negócio</span>
-                    <span class="value" id="sumNegocio">—</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label" data-i18n="diag.sum.seg">Segmento</span>
-                    <span class="value" id="sumSegmento">—</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label" data-i18n="diag.sum.site">Site atual</span>
-                    <span class="value" id="sumSite">—</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label" data-i18n="diag.sum.phone">Telefone</span>
-                    <span class="value" id="sumTelefone">—</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label" data-i18n="diag.sum.email">E-mail</span>
-                    <span class="value" id="sumEmail">—</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label" data-i18n="diag.sum.pain">Principal dor</span>
-                    <span class="value" id="sumDor">—</span>
-                </div>
-            </div>
-
-            <a href="https://wa.me/<?php echo htmlspecialchars($config['whatsapp'], ENT_QUOTES, 'UTF-8'); ?>?text=Oi!" class="whatsapp-link" id="whatsappLink">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                <span data-i18n="diag.whatsapp">Chamar no WhatsApp</span>
-            </a>
+    <!-- Loading -->
+    <div class="step" id="stepLoading">
+        <div class="loading-screen">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Analisando seu negócio...</p>
+            <p class="loading-sub">Nossa IA está preparando um parecer personalizado com base nas suas respostas.</p>
         </div>
+    </div>
+
+    <!-- Result: AI Parecer -->
+    <div class="step" id="stepResult">
+        <div id="parecerCard" class="parecer-card"></div>
+        <a href="#" id="whatsappLink" class="whatsapp-link" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar call gratuita de 30 min →
+        </a>
+        <a href="/" class="btn-home">← Voltar ao início</a>
     </div>
 </div>
 

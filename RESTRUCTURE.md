@@ -45,6 +45,7 @@ Reestruturar o repositório do site `ftit.com.br` seguindo boas práticas de org
 ├── docker-compose.yml
 ├── Dockerfile
 ├── CLAUDE.md
+├── index.php
 │
 └── public/                       ← WEB ROOT
     ├── index.php

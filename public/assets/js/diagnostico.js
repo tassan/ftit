@@ -14,7 +14,11 @@ const formData = {
 // ─── Ganchos ──────────────────────────────────────────────────────────────────
 
 function exibirGancho(emoji, texto, fonte) {
-    const el = document.getElementById('gancho-feedback');
+    const stepAtivo = document.querySelector('.step.active');
+    if (!stepAtivo) return;
+    const el = stepAtivo.querySelector('.gancho-inline');
+    if (!el) return;
+
     el.querySelector('.gancho-emoji').textContent = emoji;
     el.querySelector('.gancho-texto').textContent = texto;
     const fonteEl = el.querySelector('.gancho-fonte');
@@ -26,7 +30,7 @@ function exibirGancho(emoji, texto, fonte) {
         fonteEl.style.display = 'none';
     }
     el.style.display = 'flex';
-    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
 const GANCHOS_SEGMENTO = {
@@ -141,11 +145,12 @@ function showStep(n) {
 
     if (n === 'loading' || n === 'result') {
         document.querySelector('.progress-container').style.display = 'none';
-        document.getElementById('gancho-feedback').style.display = 'none';
     }
 }
 
 function nextStep(from) {
+    document.querySelectorAll('.gancho-inline').forEach(el => { el.style.display = 'none'; });
+
     if (from === 1) {
         formData.nome     = document.getElementById('nome').value.trim();
         formData.negocio  = document.getElementById('negocio').value.trim();
@@ -164,6 +169,8 @@ function nextStep(from) {
 }
 
 function prevStep(from) {
+    document.querySelectorAll('.gancho-inline').forEach(el => { el.style.display = 'none'; });
+
     currentStep = from - 1;
     updateProgress();
     showStep(currentStep);

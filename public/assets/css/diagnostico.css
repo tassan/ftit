@@ -527,38 +527,47 @@ select.input-field optgroup {
     background: rgba(124, 58, 237, 0.08);
 }
 
-/* Gancho feedback */
-.gancho {
-    display: none;
+/* Gancho inline — inside each step, above btn-row */
+.gancho-inline {
+    display: none; /* controlled by JS */
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 12px;
     background: rgba(124, 58, 237, 0.08);
-    border: 1px solid rgba(124, 58, 237, 0.3);
-    border-radius: 10px;
-    padding: 1rem 1.125rem;
-    margin-bottom: 1.5rem;
-    animation: fadeSlideIn 0.4s ease;
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-left: 3px solid var(--accent-purple);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    animation: ganchoFadeIn 0.3s ease;
 }
 
-.gancho-emoji {
-    font-size: 1.4rem;
-    line-height: 1.4;
+.gancho-inline .gancho-emoji {
+    font-size: 1.25rem;
     flex-shrink: 0;
+    margin-top: 1px;
 }
 
-.gancho-texto {
+.gancho-inline .gancho-texto {
+    font-size: 0.875rem;
+    line-height: 1.55;
     color: var(--text-primary);
-    font-size: 0.9rem;
-    line-height: 1.6;
     margin: 0;
+    flex: 1;
 }
 
-.gancho-fonte {
-    display: block;
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    margin-top: 0.4rem;
+.gancho-inline .gancho-fonte {
+    display: none; /* shown via JS when fonte exists */
+    font-size: 0.72rem;
+    color: var(--accent-purple);
+    margin-top: 6px;
     font-style: italic;
+    letter-spacing: 0.02em;
+}
+
+@keyframes ganchoFadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Loading */
@@ -752,5 +761,5 @@ select.input-field optgroup {
     .btn-row { flex-direction: column-reverse; }
     .btn { width: 100%; text-align: center; }
     .parecer-header { flex-direction: column; }
-    .gancho { flex-direction: column; gap: 0.5rem; }
+    .gancho-inline { flex-direction: column; gap: 0.5rem; }
 }

@@ -34,13 +34,6 @@ $page = [
         <div class="progress-label" id="progressLabel">Etapa 1 de 6</div>
     </div>
 
-    <!-- Gancho feedback (contextual message shown between blocks) -->
-    <div id="gancho-feedback" class="gancho" aria-live="polite" style="display:none">
-        <span class="gancho-emoji"></span>
-        <p class="gancho-texto"></p>
-        <small class="gancho-fonte"></small>
-    </div>
-
     <!-- Step 1 — Bloco 1: Identificação -->
     <div class="step active" id="step1">
         <div class="step-number">01_</div>
@@ -72,6 +65,12 @@ $page = [
         <div class="input-group">
             <label class="input-label" for="cidade">Cidade</label>
             <input type="text" id="cidade" class="input-field" placeholder="Ex: São Paulo – SP" required>
+        </div>
+
+        <div id="gancho-1" class="gancho gancho-inline" aria-live="polite" style="display:none">
+            <span class="gancho-emoji"></span>
+            <p class="gancho-texto"></p>
+            <small class="gancho-fonte"></small>
         </div>
 
         <div class="btn-row">
@@ -136,6 +135,12 @@ $page = [
             <input type="text" id="segmento_outro" class="input-field" placeholder="Descreva brevemente">
         </div>
 
+        <div id="gancho-2" class="gancho gancho-inline" aria-live="polite" style="display:none">
+            <span class="gancho-emoji"></span>
+            <p class="gancho-texto"></p>
+            <small class="gancho-fonte"></small>
+        </div>
+
         <div class="btn-row">
             <button class="btn btn-secondary" onclick="prevStep(2)">← Voltar</button>
             <button class="btn btn-primary" onclick="nextStep(2)" id="btn2" disabled>Próximo →</button>
@@ -166,6 +171,12 @@ $page = [
                 <label class="radio-option"><input type="radio" name="funcionarios" value="6–15 pessoas"><span>6–15 pessoas</span></label>
                 <label class="radio-option"><input type="radio" name="funcionarios" value="Mais de 15"><span>Mais de 15</span></label>
             </div>
+        </div>
+
+        <div id="gancho-3" class="gancho gancho-inline" aria-live="polite" style="display:none">
+            <span class="gancho-emoji"></span>
+            <p class="gancho-texto"></p>
+            <small class="gancho-fonte"></small>
         </div>
 
         <div class="btn-row">
@@ -218,6 +229,12 @@ $page = [
             </div>
         </div>
 
+        <div id="gancho-4" class="gancho gancho-inline" aria-live="polite" style="display:none">
+            <span class="gancho-emoji"></span>
+            <p class="gancho-texto"></p>
+            <small class="gancho-fonte"></small>
+        </div>
+
         <div class="btn-row">
             <button class="btn btn-secondary" onclick="prevStep(4)">← Voltar</button>
             <button class="btn btn-primary" onclick="nextStep(4)" id="btn4" disabled>Próximo →</button>
@@ -260,6 +277,12 @@ $page = [
             </div>
         </div>
 
+        <div id="gancho-5" class="gancho gancho-inline" aria-live="polite" style="display:none">
+            <span class="gancho-emoji"></span>
+            <p class="gancho-texto"></p>
+            <small class="gancho-fonte"></small>
+        </div>
+
         <div class="btn-row">
             <button class="btn btn-secondary" onclick="prevStep(5)">← Voltar</button>
             <button class="btn btn-primary" onclick="nextStep(5)" id="btn5" disabled>Próximo →</button>
@@ -287,6 +310,12 @@ $page = [
                 <input type="checkbox" id="lgpd-consent">
                 <span>Li e concordo com a <a href="/privacidade" target="_blank">Política de Privacidade</a></span>
             </label>
+        </div>
+
+        <div id="gancho-6" class="gancho gancho-inline" aria-live="polite" style="display:none">
+            <span class="gancho-emoji"></span>
+            <p class="gancho-texto"></p>
+            <small class="gancho-fonte"></small>
         </div>
 
         <div class="btn-row">

@@ -4,7 +4,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./laravel-app:/var/www/html
+      - .:/var/www/html
     env_file:
-      - ./laravel-app/.env
+      - .env
     restart: unless-stopped

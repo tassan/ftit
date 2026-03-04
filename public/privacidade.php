@@ -1,19 +1,42 @@
-@extends('layouts.app')
+<?php
+$config = require __DIR__ . '/config/config.php';
 
-@push('head')
+$page = [
+    'title'       => 'Política de Privacidade',
+    'description' => 'Política de Privacidade da FTIT — como coletamos, usamos e protegemos seus dados pessoais.',
+    'url'         => rtrim($config['base_url'], '/') . '/privacidade',
+];
+
+// Portuguese month names for date formatting
+$ptMonths = [
+    1  => 'janeiro',   2  => 'fevereiro', 3  => 'março',
+    4  => 'abril',     5  => 'maio',      6  => 'junho',
+    7  => 'julho',     8  => 'agosto',    9  => 'setembro',
+    10 => 'outubro',   11 => 'novembro',  12 => 'dezembro',
+];
+$updatedDate = sprintf(
+    '%d de %s de %d',
+    (int) date('j'),
+    $ptMonths[(int) date('n')],
+    (int) date('Y')
+);
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <?php include __DIR__ . '/config/head.php'; ?>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/privacidade.css') }}">
-@endpush
-
-@section('body')
+    <link rel="stylesheet" href="/assets/css/privacidade.css">
+</head>
+<body>
 <div class="container">
     <div class="header">
-        <a href="{{ route('landing') }}" class="logo">
+        <a href="/" class="logo">
             <span class="back-arrow">←</span>
             <span class="ft">f(t)</span><span class="it"> it</span>
         </a>
         <h1>Política de <span class="highlight">Privacidade</span></h1>
-        <p class="subtitle">Última atualização: {{ now()->translatedFormat('d \\d\\e F \\d\\e Y') }}</p>
+        <p class="subtitle">Última atualização: <?= htmlspecialchars($updatedDate) ?></p>
     </div>
 
     <div class="policy-content">
@@ -130,9 +153,9 @@
     </div>
 
     <div class="policy-footer">
-        <a href="{{ route('landing') }}" class="back-link">← Voltar ao site</a>
-        <p class="footer-info">CNPJ: 55.191.137/0001-62 &nbsp;·&nbsp; &copy; {{ date('Y') }} FTIT</p>
+        <a href="/" class="back-link">← Voltar ao site</a>
+        <p class="footer-info">CNPJ: 55.191.137/0001-62 &nbsp;·&nbsp; &copy; <?= date('Y') ?> FTIT</p>
     </div>
 </div>
-@endsection
-
+</body>
+</html>

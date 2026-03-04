@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-::root {
+:root {
     --bg-primary: #0D0D0F;
     --bg-secondary: #1A1A1F;
     --bg-card: #242429;

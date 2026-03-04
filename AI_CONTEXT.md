@@ -223,7 +223,6 @@ If an edit introduces new translatable UI on i18n-enabled screens:
 
 ## 12) Known Caveats
 
-- Root `index.php` is only a redirect helper for local setups; real app entry is `public/index.php`.
 - `BASE_URL` is currently fixed in config (`https://ftit.com.br`), so avoid environment-dependent assumptions unless explicitly changing this behavior.
 - Diagnosis flow is more complex than old 4-step docs; trust current code over older specs.
 

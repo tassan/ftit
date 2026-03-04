@@ -13,8 +13,5 @@
 .DS_Store
 Thumbs.db
 
-# Composer
-/vendor/
-
 # PHPUnit
 .phpunit.result.cache

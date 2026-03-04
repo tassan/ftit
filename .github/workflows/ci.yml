@@ -31,14 +31,13 @@ jobs:
           extensions: mbstring, curl
           coverage: none
 
-      - name: Validate composer.json
-        run: composer validate --strict
-
-      - name: Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Download PHPUnit
+        run: |
+          curl -sL https://phar.phpunit.de/phpunit-11.phar -o phpunit.phar
+          chmod +x phpunit.phar
 
       - name: PHP syntax check
         run: find public -name "*.php" -print0 | xargs -0 -n1 php -l
 
       - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --configuration phpunit.xml.dist
+        run: php phpunit.phar --configuration phpunit.xml.dist

@@ -1,0 +1,44 @@
+name: Build & Test
+
+on:
+  push:
+    branches:
+      - main
+      - 'copilot/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php }} – Syntax & Unit Tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    strategy:
+      matrix:
+        php: ['8.2']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, curl
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: PHP syntax check
+        run: find public -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --configuration phpunit.xml.dist

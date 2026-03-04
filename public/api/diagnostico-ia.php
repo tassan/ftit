@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 $config = require dirname(__DIR__) . '/config/config.php';
+require_once dirname(__DIR__) . '/config/helpers.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -37,22 +38,6 @@ foreach ($required as $field) {
         echo json_encode(['error' => "Campo obrigatório ausente: $field"]);
         exit;
     }
-}
-
-/**
- * Sanitize a string value: strip tags and trim whitespace.
- */
-function clean(?string $value): string
-{
-    return trim((string) strip_tags((string) $value));
-}
-
-/**
- * Truncate a string to a maximum byte length.
- */
-function truncate(string $value, int $max): string
-{
-    return mb_substr($value, 0, $max);
 }
 
 // Normalize segmento

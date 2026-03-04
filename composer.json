@@ -1,0 +1,26 @@
+{
+    "name": "tassan/ftit",
+    "description": "FTIT digital transformation consultancy website",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11"
+    },
+    "autoload": {
+        "files": [
+            "public/config/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}

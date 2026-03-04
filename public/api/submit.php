@@ -1,5 +1,5 @@
 <?php
-$config = require __DIR__ . '/config/env.php';
+$config = require __DIR__ . '/../config/config.php';
 
 header('Content-Type: application/json');
 

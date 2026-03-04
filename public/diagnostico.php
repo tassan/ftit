@@ -1,16 +1,17 @@
 <?php
-$config = require __DIR__ . '/config/env.php';
+$config = require __DIR__ . '/config/config.php';
+$page = [
+    'title'       => 'Diagnóstico Digital Gratuito',
+    'description' => 'Descubra em 2 minutos os principais gaps digitais do seu negócio e receba um parecer personalizado.',
+    'url'         => BASE_URL . '/diagnostico',
+];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico Express — f(t) it</title>
-    <link rel="icon" type="image/svg+xml" href="ft_logo.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <?php require_once __DIR__ . '/config/head.php'; ?>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/diagnostico.css">
+    <link rel="stylesheet" href="/assets/css/diagnostico.css">
 </head>
 <body>
 
@@ -146,9 +147,16 @@ $config = require __DIR__ . '/config/env.php';
             <textarea id="dor" class="input-field" placeholder="Ex: Perco clientes porque não apareço no Google..." data-i18n-placeholder="diag.step4.placeholder"></textarea>
         </div>
 
+        <div class="consent-wrapper">
+            <label class="consent-label">
+                <input type="checkbox" id="lgpd-consent">
+                <span data-i18n-html="diag.consent">Li e concordo com a <a href="/privacidade.php" target="_blank">Política de Privacidade</a></span>
+            </label>
+        </div>
+
         <div class="btn-row">
             <button class="btn btn-secondary" onclick="prevStep(4)" data-i18n="diag.back">← Voltar</button>
-            <button class="btn btn-primary" onclick="submitForm()" id="btn4" data-i18n="diag.submit">Agendar diagnóstico →</button>
+            <button class="btn btn-primary" onclick="submitForm()" id="btn4" disabled data-i18n="diag.submit">Agendar diagnóstico →</button>
         </div>
     </div>
 
@@ -205,7 +213,7 @@ window.FTIT = {
     whatsapp: '<?php echo htmlspecialchars($config['whatsapp'], ENT_QUOTES, 'UTF-8'); ?>'
 };
 </script>
-<script src="assets/js/diagnostico.js"></script>
+<script src="/assets/js/diagnostico.js"></script>
 
 </body>
 </html>

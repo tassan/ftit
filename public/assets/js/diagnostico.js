@@ -3,7 +3,7 @@ let translations = {};
 
 async function loadLanguage(lang) {
     try {
-        const res = await fetch(`lang/${lang}.json`);
+        const res = await fetch(`/lang/${lang}.json`);
         translations = await res.json();
         applyTranslations();
     } catch (e) {
@@ -100,7 +100,7 @@ async function submitForm() {
     btn.textContent = translations['diag.submitting'] || 'Enviando...';
 
     try {
-        const res = await fetch('submit.php', {
+        const res = await fetch('/api/submit.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
@@ -150,6 +150,11 @@ async function submitForm() {
         const telefone = document.getElementById('telefone').value.trim();
         document.getElementById('btn1').disabled = !(nome && negocio && telefone);
     });
+});
+
+// LGPD consent checkbox enables submit button
+document.getElementById('lgpd-consent').addEventListener('change', function () {
+    document.getElementById('btn4').disabled = !this.checked;
 });
 
 // Enter key navigation

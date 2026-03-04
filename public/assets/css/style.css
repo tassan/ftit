@@ -615,6 +615,27 @@ section {
   color: var(--text-secondary);
 }
 
+.footer-privacy {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+.footer-privacy a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-privacy a:hover {
+  color: var(--accent-purple);
+}
+
+.footer-sep {
+  margin: 0 0.4rem;
+  opacity: 0.5;
+}
+
 /* ===== FLOATING WHATSAPP ===== */
 .floating-whatsapp {
   position: fixed;

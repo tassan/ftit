@@ -30,7 +30,6 @@ node_modules/
 uploads/
 
 # Sensitive config
-config.php
 database.php
 
 # Claude

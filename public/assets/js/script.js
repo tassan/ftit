@@ -7,7 +7,7 @@
 
   async function loadLanguage(lang) {
     try {
-      const res = await fetch(`lang/${lang}.json`);
+      const res = await fetch(`/lang/${lang}.json`);
       translations = await res.json();
       applyTranslations();
       currentLang = lang;

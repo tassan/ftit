@@ -2,9 +2,10 @@ services:
   web:
     build: .
     ports:
-      - "8080:80"
+      - "8080:443"
+      - "8081:80"
     volumes:
-      - .:/var/www/html/
+      - ./public:/var/www/html
     env_file:
       - .env
     restart: unless-stopped

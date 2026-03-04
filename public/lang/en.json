@@ -47,6 +47,8 @@
 
   "footer.rights": "All rights reserved.",
   "footer.cnpj": "CNPJ: 55.191.137/0001-62",
+  "footer.privacy": "Privacy Policy",
+  "footer.lgpd": "Your data is protected under LGPD",
 
   "diag.title": "Express <span class=\"highlight\">Diagnosis</span>",
   "diag.subtitle": "4 quick questions. Then, <strong>30 minutes of direct conversation</strong> about your business.",
@@ -105,5 +107,6 @@
   "diag.sum.pain": "Main pain",
   "diag.sum.unknown": "(not provided)",
   "diag.whatsapp": "Chat on WhatsApp",
-  "diag.wa_msg": "Hi! I'm {name} from {biz} ({seg}). I filled out the diagnosis on your site and want to schedule a call."
+  "diag.wa_msg": "Hi! I'm {name} from {biz} ({seg}). I filled out the diagnosis on your site and want to schedule a call.",
+  "diag.consent": "I have read and agree to the <a href=\"/privacidade.php\" target=\"_blank\">Privacy Policy</a>"
 }

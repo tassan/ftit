@@ -47,6 +47,8 @@
 
   "footer.rights": "Todos os direitos reservados.",
   "footer.cnpj": "CNPJ: 55.191.137/0001-62",
+  "footer.privacy": "Política de Privacidade",
+  "footer.lgpd": "Seus dados são protegidos pela LGPD",
 
   "diag.title": "Diagnóstico <span class=\"highlight\">Express</span>",
   "diag.subtitle": "4 perguntas rápidas. Depois, <strong>30 minutos de conversa direta</strong> sobre seu negócio.",
@@ -105,5 +107,6 @@
   "diag.sum.pain": "Principal dor",
   "diag.sum.unknown": "(não informado)",
   "diag.whatsapp": "Chamar no WhatsApp",
-  "diag.wa_msg": "Oi! Sou {name} da {biz} ({seg}). Preenchi o diagnóstico no site e quero agendar a conversa."
+  "diag.wa_msg": "Oi! Sou {name} da {biz} ({seg}). Preenchi o diagnóstico no site e quero agendar a conversa.",
+  "diag.consent": "Li e concordo com a <a href=\"/privacidade.php\" target=\"_blank\">Política de Privacidade</a>"
 }

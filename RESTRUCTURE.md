@@ -757,8 +757,8 @@ touch public/assets/js/diagnostico.js
 ### 16. Criar `.env.example`
 
 ```env
-# Anthropic API
-ANTHROPIC_API_KEY=sk-ant-...
+# OpenAI API
+OPENAI_API_KEY=sk-openai-...
 
 # Make (Integromat) Webhook
 MAKE_WEBHOOK_URL=https://hook.eu2.make.com/...

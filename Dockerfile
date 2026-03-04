@@ -23,6 +23,7 @@ RUN a2enmod ssl && a2ensite default-ssl
 
 # Copy project files
 COPY public/ /var/www/html/
+COPY tests/ /var/www/tests/
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/

@@ -12,6 +12,7 @@ if (file_exists($envFile)) {
 }
 
 define('ANTHROPIC_API_KEY', getenv('ANTHROPIC_API_KEY') ?: '');
+define('OPENAI_API_KEY',    getenv('OPENAI_API_KEY') ?: '');
 define('MAKE_WEBHOOK_URL',  getenv('MAKE_WEBHOOK_URL') ?: getenv('WEBHOOK_URL') ?: '');
 define('WHATSAPP_NUMBER',   getenv('WHATSAPP_NUMBER') ?: '5500000000000');
 define('APP_ENV',           getenv('APP_ENV') ?: 'production');

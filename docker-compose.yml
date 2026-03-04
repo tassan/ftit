@@ -6,6 +6,7 @@ services:
       - "8081:80"
     volumes:
       - ./public:/var/www/html
+      - ./tests:/var/www/tests
     env_file:
       - .env
     restart: unless-stopped

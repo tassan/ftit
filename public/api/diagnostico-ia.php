@@ -30,7 +30,7 @@ foreach ($campos as $campo) {
 }
 
 $prompt    = buildPrompt($dados);
-$resultado = callAnthropic($prompt);
+$resultado = callOpenAI($prompt);
 
 if ($resultado['success']) {
     dispatchWebhook($dados, $resultado['parecer']);
@@ -86,17 +86,24 @@ Responda APENAS com JSON válido, sem markdown, sem texto antes ou depois:
 EOT;
 }
 
-function callAnthropic(string $prompt): array {
-    $apiKey = ANTHROPIC_API_KEY;
-    if (!$apiKey) return ['success' => false];
+function callOpenAI(string $prompt): array {
+    $apiKey = OPENAI_API_KEY;
+    if (!$apiKey) {
+        error_log('[diagnostico-ia][callOpenAI] OPENAI_API_KEY is not set');
+        return ['success' => false];
+    }
 
     $payload = json_encode([
-        'model'      => 'claude-sonnet-4-6',
-        'max_tokens' => 1024,
-        'messages'   => [['role' => 'user', 'content' => $prompt]]
+        'model'       => getenv('OPENAI_MODEL') ?: 'gpt-4.1-mini',
+        'max_tokens'  => 1024,
+        'temperature' => 0.2,
+        'messages'    => [
+            ['role' => 'user', 'content' => $prompt],
+        ],
     ]);
 
-    $ch = curl_init('https://api.anthropic.com/v1/messages');
+    $ch = curl_init('https://api.openai.com/v1/chat/completions');
+    $curlError = null;
     curl_setopt_array($ch, [
         CURLOPT_POST           => true,
         CURLOPT_POSTFIELDS     => $payload,
@@ -104,22 +111,44 @@ function callAnthropic(string $prompt): array {
         CURLOPT_TIMEOUT        => 30,
         CURLOPT_HTTPHEADER     => [
             'Content-Type: application/json',
-            'x-api-key: ' . $apiKey,
-            'anthropic-version: 2023-06-01',
+            'Authorization: Bearer ' . $apiKey,
         ],
     ]);
 
     $body     = curl_exec($ch);
+    if ($body === false) {
+        $curlError = curl_error($ch);
+    }
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    if ($httpCode !== 200 || !$body) return ['success' => false];
+    if ($httpCode !== 200 || !$body) {
+        error_log(sprintf(
+            '[diagnostico-ia][callOpenAI] Non-200 response from OpenAI. status=%d curl_error=%s body=%s',
+            $httpCode,
+            $curlError ?: 'none',
+            $body ? substr($body, 0, 500) : 'empty'
+        ));
+        return ['success' => false];
+    }
 
     $response = json_decode($body, true);
-    $text     = $response['content'][0]['text'] ?? '';
-    $parecer  = json_decode($text, true);
+    if (!is_array($response)) {
+        error_log('[diagnostico-ia][callOpenAI] Failed to decode OpenAI JSON response');
+        return ['success' => false];
+    }
 
-    if (!$parecer) return ['success' => false];
+    $content  = $response['choices'][0]['message']['content'] ?? '';
+    if (!$content) {
+        error_log('[diagnostico-ia][callOpenAI] Missing choices[0].message.content in OpenAI response');
+        return ['success' => false];
+    }
+
+    $parecer = json_decode($content, true);
+    if (!$parecer) {
+        error_log('[diagnostico-ia][callOpenAI] Failed to decode parecer JSON from OpenAI content: ' . substr($content, 0, 500));
+        return ['success' => false];
+    }
 
     return ['success' => true, 'parecer' => $parecer];
 }

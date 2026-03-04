@@ -1,0 +1,60 @@
+---
+description: Core FTIT project working context and safety constraints
+alwaysApply: true
+---
+
+# FTIT — Universal AI Working Context (Cursor Rule)
+
+- **Goal & mindset**
+  - Make precise, minimal, production-safe changes.
+  - Prefer targeted edits over large refactors.
+  - Keep existing visual identity, layout, and behavior unless explicitly asked.
+
+- **Stack & architecture**
+  - Stack is PHP 8.2 (Apache), HTML, CSS, vanilla JS, JSON i18n, cURL integrations.
+  - No new frontend or backend frameworks unless the user explicitly approves.
+  - Web root is `public/`; root `index.php` is just a redirect helper.
+  - Respect existing PHP file structure and partials (e.g. `public/config/head.php`, `public/config/config.php`).
+
+- **Routing & URLs**
+  - Apache `.htaccess` in `public/` defines clean URLs (e.g. `/privacidade` → `privacidade.php`).
+  - Keep URLs and routing compatible with these rules when adding or changing pages.
+  - New pages should be added as `public/new-page.php` and exposed as `/new-page` (extensionless URL).
+
+- **Environment & secrets**
+  - Environment variables are defined in root `.env` and loaded via `public/config/config.php`.
+  - Never commit secrets or `.env` contents; do not hardcode API keys or sensitive values.
+  - Prefer using existing config keys (e.g. WhatsApp, email, webhook URL/key) instead of new env variables unless requested.
+
+- **Key flows & files**
+  - Main landing: `public/index.php` + `public/assets/css/style.css` + `public/assets/js/script.js`.
+  - Diagnosis: `public/diagnostico.php` + `public/assets/css/diagnostico.css` + `public/assets/js/diagnostico.js` + `public/api/diagnostico-ia.php`.
+  - Other important pages: `public/privacidade.php`, `public/obrigado.php`.
+
+- **APIs & contracts**
+  - `public/api/submit.php`: JSON POST → forwards selected fields to webhook with `x-make-apikey` → returns `{ "ok": true|false }`.
+  - `public/api/diagnostico-ia.php`: JSON POST → normalizes/sanitizes input → calls the OpenAI Chat Completions API → strict JSON schema in `parecer`.
+  - Preserve existing response and payload contracts unless the user explicitly agrees to breaking changes.
+
+- **i18n behavior**
+  - i18n JSON is in `public/lang/pt.json` and `public/lang/en.json`.
+  - Landing page uses `data-i18n` attributes and `public/assets/js/script.js`, with language stored as `ftit-lang` in `localStorage`.
+  - When adding or changing translatable UI on i18n-enabled screens:
+    - Add or update keys in both `pt.json` and `en.json`.
+    - Use `data-i18n` attributes in HTML when appropriate.
+
+- **Design & UX constraints**
+  - Preserve FTIT dark cyberpunk visual identity and existing responsive behavior.
+  - Maintain conversion-first CTA hierarchy: (1) Diagnosis, (2) WhatsApp.
+  - Avoid introducing extra steps, popups, or complex interactions unless the user requests them.
+
+- **Safe-change patterns**
+  - When tweaking diagnosis fields, keep frontend form, JS state/validation, and backend parsing in sync.
+  - When changing AI output cards, keep both frontend rendering and backend `parecer` schema aligned.
+  - When updating contact destinations, prefer changing `.env` (`EMAIL_TO`, `WHATSAPP_NUMBER`) and ensure all links/flows use config.
+
+- **Validation before delivery**
+  - Run at least basic syntax or lint checks on any edited PHP/JS files when possible.
+  - Avoid adding secret values to tracked files.
+  - For routing changes, ensure `/`, `/diagnostico`, `/privacidade`, and `/obrigado` still load correctly.
+  - For diagnosis or i18n changes, verify step navigation, required-field logic, submit flow, and PT/EN toggle behavior as relevant.

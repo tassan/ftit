@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <rect width="500" height="500" fill="#0D0D0F" rx="80"/>
+  <!-- Glow effect -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <text
+    x="250"
+    y="315"
+    font-family="'Courier New', Courier, monospace"
+    font-size="158"
+    font-weight="700"
+    fill="#7C3AED"
+    text-anchor="middle"
+    filter="url(#glow)"
+  >f(t)</text>
+</svg>

@@ -1,16 +1,21 @@
 name: Deploy to Hostinger
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - "Build & Test"
     branches:
       - main
+    types:
+      - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Trigger Hostinger Deploy Webhook
         run: |
-          curl -X POST "${{ secrets.HOSTINGER_WEBHOOK_URL }}" \
+          curl --fail --show-error -X POST "${{ secrets.HOSTINGER_WEBHOOK_URL }}" \
             -H "Content-Type: application/json"

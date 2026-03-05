@@ -488,4 +488,208 @@ select.input-field optgroup {
 .radio-option {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.radio-option input {
+    accent-color: var(--accent-purple);
+}
+
+/* Loading screen */
+.loading-screen {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.5rem;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent-purple);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.loading-sub {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Result step: hide progress bar when showing AI result */
+.result-view .progress-container {
+    display: none !important;
+}
+
+/* Parecer (AI result) card */
+#stepResult.step.active {
+    display: block;
+}
+
+.parecer-card {
+    background: transparent;
+    color: var(--text-primary);
+    margin-bottom: 0;
+}
+
+.parecer-header {
+    margin-bottom: 1.75rem;
+}
+
+.parecer-titulo {
+    font-family: var(--font-mono);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.urgencia-badge {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.urgencia-badge.urgencia-alta { color: var(--accent-orange); }
+.urgencia-badge.urgencia-media { color: var(--accent-purple); }
+.urgencia-badge.urgencia-baixa { color: var(--text-secondary); }
+
+.parecer-section {
+    margin-bottom: 1.75rem;
+}
+
+.parecer-section:last-of-type {
+    margin-bottom: 1.25rem;
+}
+
+.parecer-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.parecer-section p {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.gaps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.gap-item {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-purple);
+    margin-left: 0;
+}
+
+.gap-problema {
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+}
+
+.gap-impacto {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.parecer-cta {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 1.25rem;
+    margin-bottom: 0;
+}
+
+/* Result step: actions block (WhatsApp + back link) */
+.result-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.result-actions .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-purple);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+}
+
+.result-actions .whatsapp-link:hover {
+    color: var(--accent-hover);
+}
+
+.result-actions .btn-home {
+    display: inline-block;
+    color: var(--accent-purple);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+.result-actions .btn-home:hover {
+    color: var(--accent-hover);
+}
+
+.parecer-error {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+}
+
+.parecer-error p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.parecer-error p:last-child {
+    margin-bottom: 0;
+}
 

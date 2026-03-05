@@ -137,14 +137,19 @@ function updateProgress() {
 
 function showStep(n) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    const container = document.querySelector('.container');
+    if (container) container.classList.remove('result-view');
     let target;
     if (n === 'loading') target = 'stepLoading';
-    else if (n === 'result') target = 'stepResult';
-    else target = `step${n}`;
+    else if (n === 'result') {
+        target = 'stepResult';
+        if (container) container.classList.add('result-view');
+    } else target = `step${n}`;
     document.getElementById(target).classList.add('active');
 
-    if (n === 'loading' || n === 'result') {
-        document.querySelector('.progress-container').style.display = 'none';
+    const progressEl = document.querySelector('.progress-container');
+    if (progressEl) {
+        progressEl.style.display = (n === 'loading' || n === 'result') ? 'none' : '';
     }
 }
 

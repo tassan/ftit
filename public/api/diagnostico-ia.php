@@ -228,6 +228,28 @@ $parecer = [
     'urgencia'        => $urgencia,
 ];
 
+// Save diagnostic locally (best-effort)
+$storageDir = dirname(__DIR__, 2) . '/storage/diagnostics';
+if (!is_dir($storageDir)) {
+    @mkdir($storageDir, 0755, true);
+}
+
+if (is_dir($storageDir) && is_writable($storageDir)) {
+    $filename = date('Y-m-d_His') . '_' . bin2hex(random_bytes(4)) . '.json';
+    $record   = json_encode(
+        ['created_at' => date('c'), 'input' => $input, 'parecer' => $parecer],
+        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+    );
+    if ($record !== false) {
+        $written = file_put_contents($storageDir . '/' . $filename, $record . "\n");
+        if ($written === false) {
+            error_log('Failed to write diagnostic file: ' . $storageDir . '/' . $filename);
+        }
+    }
+} else {
+    error_log('Diagnostics storage directory not writable: ' . $storageDir);
+}
+
 // Dispatch webhook (non-blocking, best-effort)
 $webhookUrl = (string) ($config['webhook_url'] ?? '');
 $webhookKey = (string) ($config['webhook_key'] ?? '');

@@ -15,3 +15,6 @@ Thumbs.db
 
 # PHPUnit
 .phpunit.result.cache
+
+# Saved diagnostics (local storage)
+/storage/diagnostics/*.json

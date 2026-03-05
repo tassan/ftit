@@ -133,23 +133,30 @@ if ($apiKey === '') {
     exit;
 }
 
-$payload = json_encode([
+$requestBody = json_encode([
     'model'           => $model,
     'messages'        => $messages,
     'temperature'     => 0.4,
     'response_format' => ['type' => 'json_object'],
 ]);
 
+if ($requestBody === false) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Erro ao preparar requisição para a IA.']);
+    exit;
+}
+
 $ch = curl_init($baseUrl . '/chat/completions');
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => $payload,
+    CURLOPT_POSTFIELDS     => $requestBody,
     CURLOPT_HTTPHEADER     => [
         'Authorization: Bearer ' . $apiKey,
         'Content-Type: application/json',
         'Accept: application/json',
     ],
+    CURLOPT_CONNECTTIMEOUT => 10,
     CURLOPT_TIMEOUT        => 60,
 ]);
 
@@ -193,16 +200,16 @@ try {
 }
 
 // Support both { "parecer": {...} } and the object at root
-$payload = isset($parsed['parecer']) && is_array($parsed['parecer'])
+$parecerRaw = isset($parsed['parecer']) && is_array($parsed['parecer'])
     ? $parsed['parecer']
     : $parsed;
 
 // Validate and sanitize parecer fields
-$urgenciaRaw = trim((string) ($payload['urgencia'] ?? ''));
+$urgenciaRaw = trim((string) ($parecerRaw['urgencia'] ?? ''));
 $urgencia    = in_array($urgenciaRaw, ['alta', 'media', 'baixa'], true) ? $urgenciaRaw : '';
 
 $gaps = [];
-foreach (($payload['gaps'] ?? []) as $gap) {
+foreach (($parecerRaw['gaps'] ?? []) as $gap) {
     if (is_array($gap)) {
         $gaps[] = [
             'problema' => trim((string) ($gap['problema'] ?? '')),
@@ -212,12 +219,12 @@ foreach (($payload['gaps'] ?? []) as $gap) {
 }
 
 $parecer = [
-    'titulo'          => trim((string) ($payload['titulo']          ?? '')),
-    'situacao_atual'  => trim((string) ($payload['situacao_atual']  ?? '')),
+    'titulo'          => trim((string) ($parecerRaw['titulo']          ?? '')),
+    'situacao_atual'  => trim((string) ($parecerRaw['situacao_atual']  ?? '')),
     'gaps'            => $gaps,
-    'potencial'       => trim((string) ($payload['potencial']       ?? '')),
-    'proximos_passos' => trim((string) ($payload['proximos_passos'] ?? '')),
-    'cta_texto'       => trim((string) ($payload['cta_texto']       ?? '')),
+    'potencial'       => trim((string) ($parecerRaw['potencial']       ?? '')),
+    'proximos_passos' => trim((string) ($parecerRaw['proximos_passos'] ?? '')),
+    'cta_texto'       => trim((string) ($parecerRaw['cta_texto']       ?? '')),
     'urgencia'        => $urgencia,
 ];
 
